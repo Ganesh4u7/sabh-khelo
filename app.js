@@ -5,7 +5,7 @@ var cors = require("cors");
 
 const config = require("./config");
 const app = express();
-const port = config.port;
+const port = normalizePort(process.env.PORT || '3000');
 
 const mongo_db = require("./connections/mongo_connection");
 
@@ -14,6 +14,8 @@ let app_init = async () => {
         await mongo_db.connect();
 
         const routes = require("./routes");
+
+        
 
         const app = express();
         app.use(cors());
@@ -40,5 +42,20 @@ let app_init = async () => {
         });
 
 }
+
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+  
+    if (isNaN(port)) {
+      // named pipe
+      return val;
+    }
+  
+    if (port >= 0) {
+      // port number
+      return port;
+    }
+
+}   
 
 app_init();
