@@ -33,6 +33,9 @@ let app_init = async () => {
         app.get('/signup',function(req,res){
           res.sendFile(path.join(__dirname,"./dist/sabh-khelo/index.html"));
         });
+        app.get('/activate-account',function(req,res){
+            res.sendFile(path.join(__dirname,"./dist/sabh-khelo/index.html"));
+          });
         app.all('*', function(req, res) {
             res.redirect("/login");
           });
