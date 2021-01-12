@@ -8,6 +8,9 @@ const add_class = async (req,res,next) => {
 
     try{
         let classDataObj = req.body;
+        if(classDataObj.mode == 'Recorded'){
+            classDataObj.members = 99999;
+        }
         console.log(classDataObj.imgUrl);
 
         let data = new classesData(classDataObj);
